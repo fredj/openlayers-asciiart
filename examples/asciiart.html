@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <title>OpenLayers ASCII art Example</title>
+
+    <link rel="stylesheet" href="http://openlayers.org/dev/theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="http://openlayers.org/dev/examples/style.css" type="text/css">
+    <style type="text/css">
+      .olControlAttribution {
+          bottom: 3px;
+      }
+    </style>
+
+    <script src="http://openlayers.org/dev/OpenLayers.js"></script>
+    <!-- <script src="../../../openlayers/lib/OpenLayers.js"></script> -->
+    <script src="../lib/OpenLayers/Tile/ASCII.js"></script>
+
+    <script type="text/javascript">
+        var map;
+
+        // This is my api key, don't use it. Please get your own at
+        // http://bingmapsportal.com/ and use that instead.
+        var apiKey = "Am8aOpNMQEbMlrtBAkv_Q4vUETK6p8lVkY9D18hmLgHXY8C96DYUUQVa5k-Av8Or";
+
+        function init() {
+            var osm_ascii = new OpenLayers.Layer.OSM("Mapnik ASCII");
+            osm_ascii.tileClass = OpenLayers.Tile.ASCII;
+
+            var osm = new OpenLayers.Layer.OSM("Mapnik");
+            var bing_ascii = new OpenLayers.Layer.Bing({
+                name: "Bing road ASCII",
+                key: apiKey,
+                type: "Road",
+                tileClass: OpenLayers.Tile.ASCII
+            });
+
+            map = new OpenLayers.Map('map', {
+                layers: [osm_ascii, osm, bing_ascii],
+                theme: null
+            });
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+            map.zoomTo(2);
+        }
+    </script>
+  </head>
+  <body onload="init()">
+    <h1 id="title">ASCII art Example</h1>
+
+    <div id="tags"></div>
+
+    <p id="shortdesc"></p>
+    
+    <div id="map" class="smallmap"></div>
+    <!-- todo: UI to change block size and gradient -->
+    <div id="docs"></div>
+  </body>
+</html>
