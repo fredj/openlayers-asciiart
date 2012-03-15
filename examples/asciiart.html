@@ -26,8 +26,9 @@
         var apiKey = "Am8aOpNMQEbMlrtBAkv_Q4vUETK6p8lVkY9D18hmLgHXY8C96DYUUQVa5k-Av8Or";
 
         function init() {
-            var osm_ascii = new OpenLayers.Layer.OSM("Mapnik ASCII");
-            osm_ascii.tileClass = OpenLayers.Tile.ASCII;
+            var osm_ascii = new OpenLayers.Layer.OSM("Mapnik ASCII", null, {
+                tileClass: OpenLayers.Tile.ASCII
+            });
 
             var osm = new OpenLayers.Layer.OSM("Mapnik");
             var bing_ascii = new OpenLayers.Layer.Bing({
@@ -49,7 +50,9 @@
   <body onload="init()">
     <h1 id="title">ASCII art Example</h1>
 
-    <div id="tags"></div>
+    <div id="tags">
+      ascii, canvas
+    </div>
 
     <p id="shortdesc"></p>
     
